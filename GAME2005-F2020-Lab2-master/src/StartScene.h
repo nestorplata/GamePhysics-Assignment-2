@@ -21,8 +21,11 @@ public:
 	virtual void start() override;
 	
 private:
+	
 	Label* m_pStartLabel{};
 	Label* m_pInstructionsLabel{};
+	Label* m_pNestorLabel;
+	Label* m_pKianLabel;
 
 	Ship* m_pShip{};
 

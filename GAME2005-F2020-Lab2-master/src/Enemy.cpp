@@ -2,9 +2,9 @@
 #include "TextureManager.h"
 
 Enemy::Enemy() {
-	TextureManager::Instance()->load("../Assets/textures/bullet.png", "enemy");
+	TextureManager::Instance()->load("../Assets/textures/stormtrooper.png", "stormtrooper");
 
-	auto size = TextureManager::Instance()->getTextureSize("enemy");
+	auto size = TextureManager::Instance()->getTextureSize("stormtrooper");
 	setWidth(size.x);
 	setHeight(size.y);
 
@@ -23,7 +23,7 @@ void Enemy::draw() {
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
 
-	TextureManager::Instance()->draw("enemy", x, y, 0, 255, true);
+	TextureManager::Instance()->draw("stormtrooper", x, y, 0, 255, true);
 }
 
 void Enemy::update() {

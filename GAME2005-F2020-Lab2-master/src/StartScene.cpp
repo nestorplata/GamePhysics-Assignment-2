@@ -54,14 +54,22 @@ void StartScene::start()
 	m_pInstructionsLabel->setParent(this);
 	addChild(m_pInstructionsLabel);
 
+	m_pNestorLabel = new Label("Nestor Plata 101282246", "Consolas", 40, blue, glm::vec2(400.0f, 200.0f));
+	m_pStartLabel->setParent(this);
+	addChild(m_pNestorLabel);
+
+	m_pKianLabel = new Label("Kian BAdieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 300.0f));
+	m_pStartLabel->setParent(this);
+	addChild(m_pKianLabel);
+
 
 	m_pShip = new Ship();
-	m_pShip->getTransform()->position = glm::vec2(400.0f, 300.0f); 
+	m_pShip->getTransform()->position = glm::vec2(400.0f, 400.0f); 
 	addChild(m_pShip); 
 
 	// Start Button
 	m_pStartButton = new Button();
-	m_pStartButton->getTransform()->position = glm::vec2(400.0f, 400.0f); 
+	m_pStartButton->getTransform()->position = glm::vec2(400.0f, 500.0f); 
 
 	m_pStartButton->addEventListener(CLICK, [&]()-> void
 	{
