@@ -83,7 +83,7 @@ float Util::squaredDistance(const glm::vec2 vecA, const glm::vec2 vecB)
 float Util::magnitude(const glm::vec2 vec)
 {
 	// You will need this
-	return 0.0f;
+	return sqrt(vec.x * vec.x + vec.y * vec.y);
 }
 
 /**
@@ -231,7 +231,7 @@ glm::vec2 Util::inverse(const glm::vec2 vec)
 glm::vec2 Util::normalize(const glm::vec2 vec)
 {
 	// You will need this
-	return vec;
+	return (1.0f / Util::magnitude(vec)) * vec;
 }
 
 /**

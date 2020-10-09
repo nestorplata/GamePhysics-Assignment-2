@@ -20,7 +20,8 @@ public:
 	void moveRight();
 	void moveUp();
 	void moveDown();
-	void stopMoving();
+	void stopMoving_x();
+	void stopMoving_y();
 
 	bool isColliding(GameObject*);
 	float getDistance(GameObject*);

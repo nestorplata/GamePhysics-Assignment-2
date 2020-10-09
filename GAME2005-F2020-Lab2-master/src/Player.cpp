@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TextureManager.h"
+#include "Util.h"
 
 Player::Player()
 {
@@ -32,37 +33,76 @@ void Player::update()
 {
 	const float deltaTime = 1.0f / 60.f;
 
+	// Normalize direction sector
+	float dirMagnitude = Util::magnitude(m_direction);
+
+	if (dirMagnitude > 0) {
+
+		getRigidBody()->acceleration = Util::normalize(m_direction) * ACCELERATION;
+	}
+	else if (Util::magnitude(getRigidBody()->velocity) > 0)
+	{
+
+		getRigidBody()->acceleration = Util::normalize(getRigidBody()->velocity) * -ACCELERATION;
+	}
+
+	getRigidBody()->velocity += getRigidBody()->acceleration;
+
 	glm::vec2 pos = getTransform()->position;
 	pos.x += getRigidBody()->velocity.x * deltaTime;
 	pos.y += getRigidBody()->velocity.y * deltaTime;
 
 	getTransform()->position = pos;
+
 }
 
 void Player::clean()
 {
 
 }
-
 void Player::moveLeft() {
-	getRigidBody()->velocity = glm::vec2(-SPEED, 0.0f);
+	m_direction.x = -1;
 }
 
 void Player::moveRight() {
-	getRigidBody()->velocity = glm::vec2(SPEED, 0.0f);
+	m_direction.x = 1;
 }
 
 void Player::moveUp() {
-	getRigidBody()->velocity = glm::vec2(0.0f, -SPEED);
+	m_direction.y = -1;
 }
 
 void Player::moveDown() {
-	getRigidBody()->velocity = glm::vec2(0.0f, SPEED);
+	m_direction.y = 1;
 }
 
-void Player::stopMoving() {
-	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
+void Player::stopMoving_x() {
+	m_direction.x = 0;
 }
+
+void Player::stopMoving_y() {
+	m_direction.y = 0;
+}
+//
+//void Player::moveLeft() {
+//	getRigidBody()->velocity = glm::vec2(-SPEED, 0.0f);
+//}
+//
+//void Player::moveRight() {
+//	getRigidBody()->velocity = glm::vec2(SPEED, 0.0f);
+//}
+//
+//void Player::moveUp() {
+//	getRigidBody()->velocity = glm::vec2(0.0f, -SPEED);
+//}
+//
+//void Player::moveDown() {
+//	getRigidBody()->velocity = glm::vec2(0.0f, SPEED);
+//}
+//
+//void Player::stopMoving() {
+//	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
+//}
 
 bool Player::isColliding(GameObject* pOther) {
 	// Works for square sprites only

@@ -27,6 +27,7 @@ private:
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;
 	Label* m_pDistanceLabel;
+	Label* m_pVelocityLabel;
 
 	Button* m_pBackButton;
 	Button* m_pNextButton;
