@@ -83,13 +83,28 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
-	// Player Sprite
+	// DETONATOR Sprite
 	m_pPlayer = new Player();
 	addChild(m_pPlayer);
 	
-	// Enemy Sprite
+	// WOOKIE Sprite
 	m_pEnemy = new Enemy();
 	addChild(m_pEnemy);
+
+	// STORMTROPPER Sprite
+	m_pShip = new Ship();
+	addChild(m_pShip);
+
+	// Objective Sprite
+	m_pObjective = new Points();
+	addChild(m_pObjective);
+	m_pObjective->getTransform()->position = glm::vec2(650.0f, 450.0f);
+
+	//START Sprite
+	m_pStart = new Points();
+	addChild(m_pStart);
+	m_pStart->getTransform()->position = glm::vec2(165.0f, 450.0f);
+
 
 	// Distance Label
 	const SDL_Color blue = { 0, 0, 255, 255 };

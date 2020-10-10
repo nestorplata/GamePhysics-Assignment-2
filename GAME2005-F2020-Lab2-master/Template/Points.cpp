@@ -1,10 +1,10 @@
-#include "Enemy.h"
+#include "Points.h"
 #include "TextureManager.h"
 
-Enemy::Enemy() {
-	TextureManager::Instance()->load("../Assets/textures/Wookie.png", "Wookie");
+Points::Points() {
+	TextureManager::Instance()->load("../Assets/textures/bullet.png", "enemy");
 
-	auto size = TextureManager::Instance()->getTextureSize("Wookie");
+	auto size = TextureManager::Instance()->getTextureSize("enemy");
 	setWidth(size.x);
 	setHeight(size.y);
 
@@ -15,10 +15,10 @@ Enemy::Enemy() {
 	setType(ENEMY);
 }
 
-Enemy::~Enemy()
+Points::~Points()
 = default;
 
-void Enemy::draw() {
+void Points::draw() {
 	// alias for x and y
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
@@ -26,10 +26,10 @@ void Enemy::draw() {
 	TextureManager::Instance()->draw("Wookie", x, y, 0, 255, true);
 }
 
-void Enemy::update() {
+void Points::update() {
 
 }
 
-void Enemy::clean() {
+void Points::clean() {
 
 }
