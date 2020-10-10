@@ -4,9 +4,9 @@
 
 Player::Player()
 {
-	TextureManager::Instance()->load("../Assets/textures/Wookie.png", "Wookie");
+	TextureManager::Instance()->load("../Assets/textures/Detonator.png", "Detonator");
 	
-	auto size = TextureManager::Instance()->getTextureSize("Wookie");
+	auto size = TextureManager::Instance()->getTextureSize("Detonator");
 	setWidth(size.x);
 	setHeight(size.y);
 
@@ -26,7 +26,7 @@ void Player::draw()
 	const auto x = getTransform()->position.x;
 	const auto y = getTransform()->position.y;
 
-	TextureManager::Instance()->draw("Wookie", x, y, 0, 255, true);
+	TextureManager::Instance()->draw("Detonator", x, y, 0, 255, true);
 }
 
 void Player::update()

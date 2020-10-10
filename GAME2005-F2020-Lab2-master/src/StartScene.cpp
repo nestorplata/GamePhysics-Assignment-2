@@ -58,7 +58,7 @@ void StartScene::start()
 	m_pStartLabel->setParent(this);
 	addChild(m_pNestorLabel);
 
-	m_pKianLabel = new Label("Kian BAdieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 300.0f));
+	m_pKianLabel = new Label("Kian Badieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 300.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pKianLabel);
 
