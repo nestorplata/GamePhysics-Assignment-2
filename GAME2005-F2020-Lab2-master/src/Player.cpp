@@ -34,7 +34,7 @@ void Player::update()
 	const float deltaTime = 1.0f / 60.f;
 
 	// Normalize direction sector
-	float dirMagnitude = Util::magnitude(m_direction);
+	//float dirMagnitude = Util::magnitude(m_direction);
 
 	//if (dirMagnitude > 0) {
 
@@ -46,8 +46,10 @@ void Player::update()
 	//	getRigidBody()->acceleration = Util::normalize(getRigidBody()->velocity) * -ACCELERATION;
 	//}
 
-	
-	//getRigidBody()->velocity.y +=ACCELERATION * deltaTime;
+	if (start != true) {
+		getRigidBody()->velocity.y += GRAVITY * deltaTime;
+	}
+
 
 	glm::vec2 pos = getTransform()->position;
 	pos.x += getRigidBody()->velocity.x * deltaTime;
@@ -61,28 +63,23 @@ void Player::clean()
 {
 
 }
-void Player::moveLeft() {
-	m_direction.x = -1;
+
+void Player::move() {
+	if (start == true)
+	{
+		getRigidBody()->velocity = glm::vec2(SPEED * cos(ANGLE_R), -SPEED * sin(ANGLE_R));
+		start = false;
+	}
+	else {
+		getRigidBody()->velocity = glm::vec2(SPEED * cos(ANGLE_R), getRigidBody()->velocity.y);
+	}
+
 }
 
-void Player::moveRight() {
-	m_direction.x = 1;
-}
 
-void Player::moveUp() {
-	m_direction.y = -1;
-}
+void Player::stopmoving() {
+	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 
-void Player::moveDown() {
-	m_direction.y = 1;
-}
-
-void Player::stopMoving_x() {
-	m_direction.x = 0;
-}
-
-void Player::stopMoving_y() {
-	m_direction.y = 0;
 }
 //
 //void Player::moveLeft() {
@@ -104,6 +101,56 @@ void Player::stopMoving_y() {
 //void Player::stopMoving() {
 //	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 //}
+
+//float Player::setangle(float gravity, float max_distance, float velocity)
+//{
+//	float left = gravity * max_distance / (velocity * velocity);
+//	ANGLE = (1 / (2 * sin(left)));
+//	return ANGLE;
+//}
+float Player::settodegrees(float radians)
+{
+	return radians * 180.0f / M_PI;
+}
+
+float Player::settoradians(float degrees)
+{
+	return degrees * M_PI / 180.0f;
+}
+
+float Player::getangle()
+{
+	return ANGLE;
+}
+float Player::getangle_R()
+{
+	return ANGLE_R;
+}
+
+float Player::getgravity()
+{
+	return GRAVITY;
+}
+
+float Player::getMax_distance()
+{
+	return I_DISTANCE;
+}
+
+float Player::getvelocity()
+{
+	return SPEED;
+}
+
+bool Player::getstart()
+{
+	if (start==true)
+	return true;
+	else
+	{
+		return false;
+	}
+}
 
 bool Player::isColliding(GameObject* pOther) {
 	// Works for square sprites only

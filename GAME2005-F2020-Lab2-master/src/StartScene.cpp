@@ -8,6 +8,7 @@
 StartScene::StartScene()
 {
 	StartScene::start();
+	TextureManager::Instance()->load("../Assets/textures/Background2.png", "background");
 }
 
 StartScene::~StartScene()
@@ -15,6 +16,7 @@ StartScene::~StartScene()
 
 void StartScene::draw()
 {
+	TextureManager::Instance()->draw("background", 255, 255, 0, 255, true);
 	drawDisplayList();
 }
 
@@ -46,22 +48,28 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
+	const SDL_Color orange = { 255, 117, 020, 255 };
+	const SDL_Color red = { 255, 0, 0, 255 };
 	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("Projectile Motion", "Consolas", 60, blue, glm::vec2(400.0f, 40.0f));
+	m_pStartLabel = new Label("Projectile Motion Simulator", "Consolas", 50, red, glm::vec2(400.0f, 40.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
-	m_pInstructionsLabel = new Label("Simulator", "Consolas", 60, blue, glm::vec2(400.0f, 100.0f));
-	m_pInstructionsLabel->setParent(this);
-	addChild(m_pInstructionsLabel);
+	//m_pInstructionsLabel = new Label("Simulator", "Consolas", 60, blue, glm::vec2(400.0f, 100.0f));
+	//m_pInstructionsLabel->setParent(this);
+	//addChild(m_pInstructionsLabel);
 
-	m_pNestorLabel = new Label("Nestor Plata 101282246", "Consolas", 40, blue, glm::vec2(400.0f, 200.0f));
-	m_pStartLabel->setParent(this);
+	m_pNestorLabel = new Label("Nestor Plata 101282246", "Consolas", 40, orange, glm::vec2(400.0f, 150.0f));
+	m_pNestorLabel->setParent(this);
 	addChild(m_pNestorLabel);
 
-	m_pKianLabel = new Label("Kian Badieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 300.0f));
-	m_pStartLabel->setParent(this);
+	m_pKianLabel = new Label("Kian Badieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 200.0f));
+	m_pKianLabel->setParent(this);
 	addChild(m_pKianLabel);
+
+	m_pKianLabel2 = new Label("put here your code", "Consolas", 40, blue, glm::vec2(400.0f, 250.0f));
+	m_pKianLabel2->setParent(this);
+	addChild(m_pKianLabel2);
 
 
 	//m_pShip = new Ship();

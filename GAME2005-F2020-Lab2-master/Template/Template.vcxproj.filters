@@ -45,9 +45,6 @@
     <ClCompile Include="..\src\TextureManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Player.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\PlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -108,6 +105,9 @@
     <ClCompile Include="..\src\Points.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Player.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\StartScene.h">
@@ -133,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="..\src\SceneState.h">
       <Filter>Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Player.h">
-      <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\PlayerAnimationState.h">
       <Filter>Enums</Filter>
@@ -225,6 +222,9 @@
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Points.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Player.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
   </ItemGroup>

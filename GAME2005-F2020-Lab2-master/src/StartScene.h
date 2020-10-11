@@ -28,6 +28,7 @@ private:
 	Label* m_pInstructionsLabel{};
 	Label* m_pNestorLabel;
 	Label* m_pKianLabel;
+	Label* m_pKianLabel2;
 
 	Player* m_pPlayer;
 
