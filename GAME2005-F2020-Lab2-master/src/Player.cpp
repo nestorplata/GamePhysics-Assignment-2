@@ -47,7 +47,8 @@ void Player::update()
 	//}
 
 	if (start != true) {
-		getRigidBody()->velocity.y += GRAVITY * deltaTime;
+		getRigidBody()->velocity.y += VERTICAL_ACC * deltaTime;
+		getRigidBody()->velocity.x += HORIZONTAL_ACC*deltaTime;
 	}
 
 
@@ -71,7 +72,7 @@ void Player::move() {
 		start = false;
 	}
 	else {
-		getRigidBody()->velocity = glm::vec2(SPEED * cos(ANGLE_R), getRigidBody()->velocity.y);
+		getRigidBody()->velocity = glm::vec2(getRigidBody()->velocity.x, getRigidBody()->velocity.y);
 	}
 
 }
@@ -116,6 +117,16 @@ float Player::settodegrees(float radians)
 float Player::settoradians(float degrees)
 {
 	return degrees * M_PI / 180.0f;
+}
+
+float Player::settometers(float pixels)
+{
+	return pixels *1/100;
+}
+
+float Player::settopixels(float meters)
+{
+	return meters*100;
 }
 
 float Player::getangle()
