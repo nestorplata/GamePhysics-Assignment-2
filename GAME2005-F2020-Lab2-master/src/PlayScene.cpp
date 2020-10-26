@@ -40,7 +40,7 @@ void PlayScene::update()
 
 	labelText2 = "Velocity = " + std::to_string(Util::magnitude(m_pPlayer->getRigidBody()->velocity));
 
-	labelText3 = "Elevation Angle = " + std::to_string(m_pPlayer->getangle());
+	labelText3 = "Depression Angle = " + std::to_string(m_pPlayer->getangle());
 	labelText4 = "Press L to launch";
 
 	m_pDistanceLabel->setText(labelText);
@@ -60,11 +60,20 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
+	if (m_pPlayer->isColliding(m_pObjective)) {
+		m_pPlayer->setbottom();
+	}
+
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L) || m_pPlayer->getstart() == false)
 	{
 		m_pPlayer->move();
 	}
-
+	else if (m_pPlayer->isColliding(m_pObjective) || m_pPlayer->gotbottom()==true) {
+		m_pPlayer->movehorizontaly();
+	}
+	else if (m_pPlayer->getRigidBody()->velocity.x <= 0 && m_pPlayer->getstart() != true) {
+		m_pPlayer->stopmoving();
+	}
 
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
@@ -72,9 +81,7 @@ void PlayScene::handleEvents()
 		TheGame::Instance()->quit();
 	}
 
-	if (m_pPlayer->isColliding(m_pObjective)|| m_pPlayer->isColliding(m_pShip)) {
-		m_pPlayer->stopmoving();
-	}
+
 }
 
 void PlayScene::start()
@@ -117,13 +124,15 @@ void PlayScene::start()
 	m_pVelocityLabel->setParent(this);
 	addChild(m_pVelocityLabel);
 
+	//starting angle Label
 	const SDL_Color green = { 0, 255, 0, 255 };
 	m_pI_AngleLabel = new Label("Angle", "Consolas", 40, green, glm::vec2(400.0f, 120.0f));
 	m_pI_AngleLabel->setParent(this);
 	addChild(m_pI_AngleLabel);
 
+	//instructions label
 	const SDL_Color orange = { 255, 117, 020, 255 };
-	m_pinstructions = new Label("Angle", "Consolas", 40, orange, glm::vec2(400.0f, 160.0f));
+	m_pinstructions = new Label("instructions", "Consolas", 40, orange, glm::vec2(400.0f, 160.0f));
 	m_pinstructions->setParent(this);
 	addChild(m_pinstructions);
 }

@@ -46,11 +46,17 @@ void Player::update()
 	//	getRigidBody()->acceleration = Util::normalize(getRigidBody()->velocity) * -ACCELERATION;
 	//}
 
-	if (start != true) {
+	if (start != true && bottom ==false) {
 		getRigidBody()->velocity.y += VERTICAL_ACC * deltaTime;
 		getRigidBody()->velocity.x += HORIZONTAL_ACC*deltaTime;
 	}
-
+	else if (bottom ==true) {
+		getRigidBody()->velocity.x -= FRICTION_DESACC * deltaTime;
+	}
+	else {
+		getRigidBody()->velocity.y = 0;
+		getRigidBody()->velocity.x = 0;
+	}
 
 	glm::vec2 pos = getTransform()->position;
 	pos.x += getRigidBody()->velocity.x * deltaTime;
@@ -68,7 +74,7 @@ void Player::clean()
 void Player::move() {
 	if (start == true)
 	{
-		getRigidBody()->velocity = glm::vec2(SPEED * cos(ANGLE_R), -SPEED * sin(ANGLE_R));
+		getRigidBody()->velocity = glm::vec2(SPEED * cos(ANGLE_R), SPEED * sin(ANGLE_R));
 		start = false;
 	}
 	else {
@@ -77,10 +83,14 @@ void Player::move() {
 
 }
 
+void Player::movehorizontaly()
+{
+	getRigidBody()->velocity = glm::vec2(0, 0.0f);
+}
+
 
 void Player::stopmoving() {
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
-
 }
 //
 //void Player::moveLeft() {
@@ -109,15 +119,15 @@ void Player::stopmoving() {
 //	ANGLE = (1 / (2 * sin(left)));
 //	return ANGLE;
 //}
-float Player::settodegrees(float radians)
-{
-	return radians * 180.0f / M_PI;
-}
-
-float Player::settoradians(float degrees)
-{
-	return degrees * M_PI / 180.0f;
-}
+//float Player::settodegrees(float radians)
+//{
+//	return radians * 180.0f / M_PI;
+//}
+//
+//float Player::settoradians(float degrees)
+//{
+//	return degrees * M_PI / 180.0f;
+//}
 
 float Player::settometers(float pixels)
 {
@@ -155,12 +165,7 @@ float Player::getvelocity()
 
 bool Player::getstart()
 {
-	if (start==true)
-	return true;
-	else
-	{
-		return false;
-	}
+	return start;
 }
 
 bool Player::isColliding(GameObject* pOther) {
@@ -170,6 +175,18 @@ bool Player::isColliding(GameObject* pOther) {
 
 	return (getDistance(pOther) <= myRadius + otherRadius);
 }
+
+bool Player::gotbottom() {
+	return bottom;
+
+}
+
+void Player::setbottom() {
+	bottom = true;
+}
+
+
+
 
 float Player::getDistance(GameObject* pOther) {
 	glm::vec2 myPos = getTransform()->position;
