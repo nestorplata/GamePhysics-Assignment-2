@@ -8,7 +8,7 @@ PlayScene::PlayScene()
 {
 	PlayScene::start();
 
-	TextureManager::Instance()->load("../Assets/textures/blackspace.png", "background4");
+	TextureManager::Instance()->load("../Assets/textures/boxes.jpg", "background4");
 }
 
 PlayScene::~PlayScene()
@@ -30,17 +30,17 @@ void PlayScene::update()
 	std::string labelText4 = "";
 
 
-	if (m_pPlayer->isColliding(m_pObjective) || m_pPlayer->isColliding(m_pShip)) {
-		labelText = "HIT";
+	//if (m_pPlayer->isColliding(m_pObjective)) {
+	//	labelText = "HIT";
 
-	}
-	else {
-		labelText = "Distance = " + std::to_string(m_pPlayer->getDistance(m_pShip));
-	}
+	//}
+	//else {
+		labelText = "Distance = " + std::to_string(m_pPlayer->getDistance(m_pObjective)) + "m";
+	//}
 
-	labelText2 = "Velocity = " + std::to_string(Util::magnitude(m_pPlayer->getRigidBody()->velocity));
+		labelText2 = "Velocity = " + std::to_string(Util::magnitude(m_pPlayer->getRigidBody()->velocity)) + "m/s";
 
-	labelText3 = "Depression Angle = " + std::to_string(m_pPlayer->getangle());
+	labelText3 = "Depression Angle = " + std::to_string(m_pPlayer->getangle()) + "°";
 	labelText4 = "Press L to launch";
 
 	m_pDistanceLabel->setText(labelText);
@@ -95,16 +95,17 @@ void PlayScene::start()
 	addChild(m_pEnemy);
 
 	// STORMTROPPER Sprite
-	m_pShip = new Ship();
-	addChild(m_pShip);
+	//m_pShip = new Ship();
+	//addChild(m_pShip);
 
 	//Objective Sprite
 	m_pObjective = new Points();
 	addChild(m_pObjective);
+	m_pObjective->getTransform()->position = glm::vec2(475.0f, 575.0f);
 
 	//m_pObjective2 = new Points();
 	//addChild(m_pObjective2);
-	//m_pObjective2->getTransform()->position = glm::vec2(650.0f, 500.0f);
+	//
 
 	////START Sprite
 	//m_pStart = new Points();

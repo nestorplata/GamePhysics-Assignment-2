@@ -8,7 +8,7 @@
 StartScene::StartScene()
 {
 	StartScene::start();
-	TextureManager::Instance()->load("../Assets/textures/Background2.png", "background");
+	TextureManager::Instance()->load("../Assets/textures/garage.jpg", "background");
 }
 
 StartScene::~StartScene()
@@ -51,7 +51,7 @@ void StartScene::start()
 	const SDL_Color orange = { 255, 117, 020, 255 };
 	const SDL_Color red = { 255, 0, 0, 255 };
 	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("Projectile Motion Simulator", "Consolas", 50, red, glm::vec2(400.0f, 40.0f));
+	m_pStartLabel = new Label("Ramp Fall Simulator", "Consolas", 50, blue, glm::vec2(400.0f, 40.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
@@ -63,11 +63,11 @@ void StartScene::start()
 	m_pNestorLabel->setParent(this);
 	addChild(m_pNestorLabel);
 
-	m_pKianLabel = new Label("Kian Badieikhorsand", "Consolas", 40, blue, glm::vec2(400.0f, 200.0f));
+	m_pKianLabel = new Label("Kian Badieikhorsand", "Consolas", 40, red, glm::vec2(400.0f, 200.0f));
 	m_pKianLabel->setParent(this);
 	addChild(m_pKianLabel);
 
-	m_pKianLabel2 = new Label("put here your code", "Consolas", 40, blue, glm::vec2(400.0f, 250.0f));
+	m_pKianLabel2 = new Label("101282433", "Consolas", 40, red, glm::vec2(400.0f, 250.0f));
 	m_pKianLabel2->setParent(this);
 	addChild(m_pKianLabel2);
 
@@ -77,7 +77,7 @@ void StartScene::start()
 	//addChild(m_pShip); 
 
 	m_pPlayer = new Player();
-	m_pPlayer->getTransform()->position = glm::vec2(400.0f, 400.0f);
+	m_pPlayer->getTransform()->position = glm::vec2(400.0f, 370.0f);
 	addChild(m_pPlayer);
 
 

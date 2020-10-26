@@ -4,13 +4,13 @@
 
 Player::Player()
 {
-	TextureManager::Instance()->load("../Assets/textures/Detonator.png", "Detonator");
+	TextureManager::Instance()->load("../Assets/textures/lootbox2.png", "Detonator");
 	
 	auto size = TextureManager::Instance()->getTextureSize("Detonator");
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(165.0f,450.0f);
+	getTransform()->position = glm::vec2(75.0f,275.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;

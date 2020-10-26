@@ -2,13 +2,13 @@
 #include "TextureManager.h"
 
 Enemy::Enemy() {
-	TextureManager::Instance()->load("../Assets/textures/Wookie.png", "Wookie");
+	TextureManager::Instance()->load("../Assets/textures/triangle.png", "Wookie");
 
 	auto size = TextureManager::Instance()->getTextureSize("Wookie");
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(165.0f, 500.0f);
+	getTransform()->position = glm::vec2(200.0f, 450.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;

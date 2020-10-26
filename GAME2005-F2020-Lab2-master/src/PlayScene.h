@@ -29,7 +29,7 @@ private:
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;
 	Points* m_pObjective;
-	Ship* m_pShip;
+	//Ship* m_pShip;
 	Label* m_pDistanceLabel;
 	Label* m_pVelocityLabel;
 	Label* m_pI_AngleLabel;
