@@ -10,7 +10,7 @@ Player::Player()
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(75.0f,275.0f);
+	getTransform()->position = glm::vec2(100.0f,200.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
@@ -50,13 +50,14 @@ void Player::update()
 		getRigidBody()->velocity.y += VERTICAL_ACC * deltaTime;
 		getRigidBody()->velocity.x += HORIZONTAL_ACC*deltaTime;
 	}
-	else if (bottom ==true) {
-		getRigidBody()->velocity.x -= FRICTION_DESACC * deltaTime;
-	}
-	else {
+	else if (getRigidBody()->velocity.x <= 0.5f && start != true && bottom == true) {
 		getRigidBody()->velocity.y = 0;
 		getRigidBody()->velocity.x = 0;
 	}
+	else if (bottom ==true) {
+		getRigidBody()->velocity.x -= FRICTION_DESACC * deltaTime;
+	}
+
 
 	glm::vec2 pos = getTransform()->position;
 	pos.x += getRigidBody()->velocity.x * deltaTime;
@@ -85,7 +86,7 @@ void Player::move() {
 
 void Player::movehorizontaly()
 {
-	getRigidBody()->velocity = glm::vec2(0, 0.0f);
+	getRigidBody()->velocity = glm::vec2(getRigidBody()->velocity.x, 0.0f);
 }
 
 

@@ -60,15 +60,15 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
-	if (m_pPlayer->isColliding(m_pObjective)) {
+	if (m_pPlayer->getDistance(m_pObjective)<1) {
 		m_pPlayer->setbottom();
 	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L) || m_pPlayer->getstart() == false)
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_L) || m_pPlayer->getstart() == false && m_pPlayer->gotbottom() == false)
 	{
 		m_pPlayer->move();
 	}
-	else if (m_pPlayer->isColliding(m_pObjective) || m_pPlayer->gotbottom()==true) {
+	else if (m_pPlayer->gotbottom()==true) {
 		m_pPlayer->movehorizontaly();
 	}
 	else if (m_pPlayer->getRigidBody()->velocity.x <= 0 && m_pPlayer->getstart() != true) {
@@ -89,7 +89,7 @@ void PlayScene::start()
 	// DETONATOR Sprite
 	m_pPlayer = new Player();
 	addChild(m_pPlayer);
-	
+
 	// WOOKIE Sprite
 	m_pEnemy = new Enemy();
 	addChild(m_pEnemy);
@@ -101,7 +101,6 @@ void PlayScene::start()
 	//Objective Sprite
 	m_pObjective = new Points();
 	addChild(m_pObjective);
-	m_pObjective->getTransform()->position = glm::vec2(475.0f, 575.0f);
 
 	//m_pObjective2 = new Points();
 	//addChild(m_pObjective2);
