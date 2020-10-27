@@ -30,16 +30,9 @@ void PlayScene::update()
 	std::string labelText4 = "";
 
 
-	//if (m_pPlayer->isColliding(m_pObjective)) {
-	//	labelText = "HIT";
 
-	//}
-	//else {
-		labelText = "Distance = " + std::to_string(m_pPlayer->getDistance(m_pObjective)) + "m";
-	//}
-
-		labelText2 = "Velocity = " + std::to_string(Util::magnitude(m_pPlayer->getRigidBody()->velocity)) + "m/s";
-
+	labelText = "Net Force = " +std::to_string(m_pPlayer->getnet_force()/100) + "N";
+	labelText2 = "acceleration = " + std::to_string(m_pPlayer->getnet_acceleration()/100) + "m/s^2";
 	labelText3 = "Depression Angle = " + std::to_string(m_pPlayer->getangle()) + "°";
 	labelText4 = "Press L to launch";
 
@@ -60,7 +53,7 @@ void PlayScene::handleEvents()
 {
 	EventManager::Instance().update();
 
-	if (m_pPlayer->getDistance(m_pObjective)<1) {
+	if (m_pPlayer->getTransform()->position.y >=500.0f) {
 		m_pPlayer->setbottom();
 	}
 
@@ -71,7 +64,7 @@ void PlayScene::handleEvents()
 	else if (m_pPlayer->gotbottom()==true) {
 		m_pPlayer->movehorizontaly();
 	}
-	else if (m_pPlayer->getRigidBody()->velocity.x <= 0 && m_pPlayer->getstart() != true) {
+	else if (m_pPlayer->getRigidBody()->velocity.x <= 0.1 && m_pPlayer->getstart() != true) {
 		m_pPlayer->stopmoving();
 	}
 
@@ -99,8 +92,8 @@ void PlayScene::start()
 	//addChild(m_pShip);
 
 	//Objective Sprite
-	m_pObjective = new Points();
-	addChild(m_pObjective);
+	//m_pObjective = new Points();
+	//addChild(m_pObjective);
 
 	//m_pObjective2 = new Points();
 	//addChild(m_pObjective2);

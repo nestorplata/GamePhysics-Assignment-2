@@ -28,7 +28,7 @@ private:
 	Plane* m_pPlaneSprite;
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;
-	Points* m_pObjective;
+	//Points* m_pObjective;
 	//Ship* m_pShip;
 	Label* m_pDistanceLabel;
 	Label* m_pVelocityLabel;

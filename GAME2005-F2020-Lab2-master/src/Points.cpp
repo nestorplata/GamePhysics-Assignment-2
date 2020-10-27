@@ -8,7 +8,7 @@ Points::Points() {
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(500.0f, 500.0f);
+	getTransform()->position = glm::vec2(400.0f, 500.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;

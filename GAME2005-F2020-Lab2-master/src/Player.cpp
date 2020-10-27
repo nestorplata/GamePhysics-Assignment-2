@@ -10,7 +10,7 @@ Player::Player()
 	setWidth(size.x);
 	setHeight(size.y);
 
-	getTransform()->position = glm::vec2(100.0f,200.0f);
+	getTransform()->position = glm::vec2(0.0f,200.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->isColliding = false;
@@ -50,7 +50,7 @@ void Player::update()
 		getRigidBody()->velocity.y += VERTICAL_ACC * deltaTime;
 		getRigidBody()->velocity.x += HORIZONTAL_ACC*deltaTime;
 	}
-	else if (getRigidBody()->velocity.x <= 0.5f && start != true && bottom == true) {
+	else if (getRigidBody()->velocity.x <= 0.1f && start != true && bottom == true) {
 		getRigidBody()->velocity.y = 0;
 		getRigidBody()->velocity.x = 0;
 	}
@@ -169,6 +169,30 @@ bool Player::getstart()
 	return start;
 }
 
+float Player::getnet_force()
+{
+	if (getstart() == true || getRigidBody()->velocity.x <= 0.1 && getstart() != true) {
+		return 0.0f;
+	}
+	else if (getstart() == false && gotbottom() == false) {
+		return NET_FORCE;
+	}
+	if (getstart()==false && gotbottom()==true)
+	return -NET_FORCE_BOTTOM;
+}
+
+float Player::getnet_acceleration()
+{
+	if (getstart() == true || getRigidBody()->velocity.x <= 0.1 && getstart() != true) {
+		return 0.0f;
+	}
+	else if (getstart() == false && gotbottom() == false) {
+		return NET_ACCELERATION;
+	}
+	if (getstart() == false && gotbottom() == true)
+	return -FRICTION_DESACC;
+}
+
 bool Player::isColliding(GameObject* pOther) {
 	// Works for square sprites only
 	float myRadius = getWidth() * 0.5f;
@@ -185,9 +209,6 @@ bool Player::gotbottom() {
 void Player::setbottom() {
 	bottom = true;
 }
-
-
-
 
 float Player::getDistance(GameObject* pOther) {
 	glm::vec2 myPos = getTransform()->position;

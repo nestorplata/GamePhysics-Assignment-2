@@ -51,7 +51,9 @@ void StartScene::start()
 	const SDL_Color orange = { 255, 117, 020, 255 };
 	const SDL_Color red = { 255, 0, 0, 255 };
 	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("Ramp Fall Simulator", "Consolas", 50, blue, glm::vec2(400.0f, 40.0f));
+	const SDL_Color black = { 0, 0, 0, 255 };
+
+	m_pStartLabel = new Label("Ramp Fall Simulator", "Consolas", 50, black, glm::vec2(400.0f, 40.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
